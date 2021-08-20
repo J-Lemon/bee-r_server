@@ -6,7 +6,12 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "target": "es5",
+    "strict": false,
+    "outDir": "./dist",
+    "emitDecoratorMetadata":true
   },
   "include": ["src/**/*"],
 }

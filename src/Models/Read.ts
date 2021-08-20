@@ -1,5 +1,6 @@
-import { IsPositive, MinLength, Max } from 'class-validator';
-import { Entity, PrimaryGeneratedColumn, Column }  from "typeorm";
+import { MinLength, Max, Min } from 'class-validator';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
+import Metric from './Metric';
 
 @Entity()
 export default class Read {
@@ -7,11 +8,14 @@ export default class Read {
     id: number;
 
     @Column()
-    @IsPositive()
+    @Min( 0 )
     @Max( 40 )
     sensor_id: number;
 
     @Column()
     @MinLength( 1 )
     value: string;
+
+    @ManyToOne( () => Metric, metric => metric.reads)
+    metric: Metric;
 }

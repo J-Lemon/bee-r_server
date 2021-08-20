@@ -1,8 +1,8 @@
 import Read from './Read';
 import Hive from './Hive';
-import { Length, IsString, IsIP, IsPositive, IsDate } from 'class-validator';
+import { IsPositive, IsDate } from 'class-validator';
 import { Entity, PrimaryGeneratedColumn, ManyToOne,
-         Column, BeforeUpdate, UpdateEvent, OneToMany }  from "typeorm";
+         Column, OneToMany, JoinTable }  from "typeorm";
 
 @Entity()
 export default class Metric {
@@ -10,14 +10,10 @@ export default class Metric {
     id: number;
 
     @Column()
-    @IsPositive()
-    metric_id: number;
-
-    @Column( { unique: true } )
     @IsDate()
     date: string;
 
-    @OneToMany( () => Read, read => read.id)
+    @OneToMany( () => Read, read => read.metric, {cascade: true} )
     reads: Read[];
 
     @ManyToOne( () => Hive, hive => hive.metrics)
