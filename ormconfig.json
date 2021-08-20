@@ -1,0 +1,14 @@
+[
+    {
+      "name": "default",
+      "type": "sqlite",
+      "database": "./data/db.sq3",
+      "autoSchemaSync": true,
+      "entities": [
+        "dist/Models/**/*.js"
+      ],
+      "cli": {
+        "entitiesDir": "dist/Models/"
+      }
+    }
+  ]
